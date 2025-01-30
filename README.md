@@ -1,4 +1,4 @@
-# Star Wars Characters. 
+# Star Wars Characters.
 
 [deploy link](https://app.netlify.com/sites/grigorev-swapi/overview)
 
@@ -133,4 +133,3 @@
 
 1. Application in each branch should function in accordance to the requirements provided in the previous modules, if they do not contradict with the new requirements provided in this module.
 2. All the tests should pass, test coverage should be >= 70%.
-
