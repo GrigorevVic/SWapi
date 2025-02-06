@@ -4,19 +4,24 @@
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  --main-dark: #090033;
-  --transparent-dark: rgba(41, 54, 40, 0.7);
-  --transparent-dark-hover: rgba(41, 54, 40);
-  --border-shadow: rgba(86, 114, 119, 0.5);
+  --main-dark: #2f2170;
   --main-light: #dff8fa;
-  --accent-blue: #6a71ec;
-  --links: #646cff;
-  --links-hover: #a0a5ff;
-  --main-buttons: #646cff;
-  --main-buttons-hover: #a0a5ff;
+  --transparent-dark: rgba(41, 54, 40, 0.5);
+  --transparent-light: rgba(221, 235, 236, 0.5);
+  --border-shadow: rgba(86, 114, 119, 0.5);
   --accent-red: #ff0000;
+  --links-hover: #a0a5ff;
   font-size: 10px;
 }
+
+a {
+  text-decoration: none;
+}
+
+.download {
+  color: var(--main-light);
+}
+
 
 * {
   margin: 0;
@@ -26,19 +31,64 @@
 body {
   display: flex;
   flex-direction: column;
-  max-width: 1440px;
   margin: 0 auto;
-  background-image: url('/star-wars.jpg');
-
-  background-color: var(--transparent-dark);
   background-blend-mode: darken;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  background-image: url('/falcon.jpg');
+}
+
+body[dark] {
+  background-image: url('/dark.jpg');
+  .btn {
+    background: var(--main-light);
+    color: var(--main-dark);
+  }
+  .toggler {
+    background: rgb(247, 222, 1);
+    background-image: url('/theme-light.svg');
+  }
+  .header {
+    color: var(--main-light);
+  }
+  .footer a {
+    color: var(--main-light);
+  }
+  .card-container {
+    background: var(--transparent-light);
+
+  }
+  .card-details {
+    background: var(--transparent-light);
+  }
+
+  .download {
+    color: var(--main-dark);
+  }
+  
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/death-star.jpg');
+  background-blend-mode: darken;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 1000px;
 }
 
 .btn {
+  background: var(--main-dark);
+  color: var(--main-light);
   width: 80px;
   height: 33px;
   cursor: pointer;
@@ -46,5 +96,12 @@ body {
 }
 
 .btn:not([disabled]):hover {
-  background: rgb(117, 113, 113);
+  background: var(--links-hover);
 }
+
+.btn[disabled] {
+  background: var(--links-hover);
+  opacity: 0.5;
+  cursor: default;
+}
+
