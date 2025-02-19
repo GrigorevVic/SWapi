@@ -14,14 +14,16 @@
   font-size: 10px;
 }
 
+#__next {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 a {
   text-decoration: none;
 }
-
-.download {
-  color: var(--main-light);
-}
-
 
 * {
   margin: 0;
@@ -29,9 +31,6 @@ a {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
   background-blend-mode: darken;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -58,7 +57,6 @@ body[dark] {
   }
   .card-container {
     background: var(--transparent-light);
-
   }
   .card-details {
     background: var(--transparent-light);
@@ -67,7 +65,18 @@ body[dark] {
   .download {
     color: var(--main-dark);
   }
-  
+}
+
+.main,
+.error {
+  flex-grow: 1;
+  padding: 20px;
+  color: var(--main-light);
+  font-size: 2rem;
+}
+
+.download {
+  color: var(--main-light);
 }
 
 .container {
@@ -84,6 +93,13 @@ body[dark] {
   background-position: center;
   background-size: cover;
   width: 1000px;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  gap: 10px;
 }
 
 .btn {
@@ -105,3 +121,41 @@ body[dark] {
   cursor: default;
 }
 
+/* page 404 */
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.img-404 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.wrapper-404 {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  color: rgba(230, 124, 124, 0.3);
+}
+
+.title-404 {
+  font-size: 15rem;
+}
+
+.btn-404 {
+  background: rgba(230, 124, 124, 0.3);
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+}

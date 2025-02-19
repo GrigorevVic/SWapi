@@ -1,7 +1,8 @@
 import './styles.css';
 import { People } from '../../types/types';
 import { getIdFromUrl } from '../../utils/utils';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectChar,
@@ -14,8 +15,8 @@ interface PeopleItem {
   people: People;
 }
 export function CardItem(props: PeopleItem) {
+  const router = useRouter();
   const { people } = props;
-  const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
 
   const isSelectedPeople = Boolean(
@@ -23,12 +24,6 @@ export function CardItem(props: PeopleItem) {
   );
 
   const id = getIdFromUrl(people.url);
-
-  const getPath = (): string => {
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.set('details', id.toString());
-    return `?${newSearchParams}`;
-  };
 
   const handleCheckboxChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -42,7 +37,7 @@ export function CardItem(props: PeopleItem) {
 
   return (
     <li className="card-container" key={people.name}>
-      <Link to={getPath()}>
+      <Link href={{ query: { ...router.query, details: id } }}>
         <div className="wrapper-img">
           <img className="card-img" src={`/${id}.jpg`} alt={people.name} />
         </div>
