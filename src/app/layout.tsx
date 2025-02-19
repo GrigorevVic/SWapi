@@ -1,14 +1,19 @@
+'use client';
+
 import './styles.css';
-import type { AppProps } from 'next/app';
 import { store } from '../store/store';
 import { Provider } from 'react-redux';
 import Head from 'next/head';
 import { ThemeProvider } from '../contexts/ThemeContextProvider';
 import { ErrorBoundary } from '../components/errorBoundary/ErrorBoundary';
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <>
+    <html lang="en">
       <Head>
         <title>Star Wars Characters</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,13 +22,13 @@ export default function App({ Component, pageProps }: AppProps) {
           content="Pages Router educational project at the RSS"
         />
       </Head>
-      <ErrorBoundary>
-        <Provider store={store}>
+      <body>
+        <ErrorBoundary>
           <ThemeProvider>
-            <Component {...pageProps} />
+            <Provider store={store}>{children}</Provider>
           </ThemeProvider>
-        </Provider>
-      </ErrorBoundary>
-    </>
+        </ErrorBoundary>
+      </body>
+    </html>
   );
 }
