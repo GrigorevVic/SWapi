@@ -1,3 +1,4 @@
+import styles from './Main.module.css';
 import { SearchForm } from '../searchForm/SearchForm';
 import { CardList } from '../cardList/CardList';
 import { useState, useEffect } from 'react';
@@ -19,13 +20,13 @@ export function Main() {
 
   useEffect(() => {
     const queryString = savedSearch
-      ? { search: savedSearch }
+      ? { search: savedSearch, page: currentPage }
       : { page: currentPage };
     router.replace({
       pathname: router.pathname,
       query: queryString,
     });
-  }, [savedSearch, currentPage]);
+  }, [savedSearch, currentPage, isFetching]);
 
   const handleSearch = (term: string) => {
     setSavedSearch(term);
@@ -41,24 +42,22 @@ export function Main() {
 
   return (
     <>
-      <main className="main">
-        {<SearchForm handleSearch={handleSearch} />}
-        {!isFetching ? (
-          <>
-            <Pagination
-              onPageChange={setCurrentPage}
-              currentPage={currentPage}
-              response={data}
-            />
-            <div className="wrapper">
-              <CardList peopleList={data?.results} />
-              {isDetails && <Details id={router.query.details} />}
-            </div>
-          </>
-        ) : (
-          <Loader />
-        )}
-      </main>
+      {<SearchForm handleSearch={handleSearch} />}
+      {!isFetching ? (
+        <>
+          <Pagination
+            onPageChange={setCurrentPage}
+            currentPage={currentPage}
+            response={data}
+          />
+          <div className={styles.wrapper}>
+            <CardList peopleList={data?.results} />
+            {isDetails && <Details id={router.query.details} />}
+          </div>
+        </>
+      ) : (
+        <Loader />
+      )}
     </>
   );
 }
